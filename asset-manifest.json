@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/custom-hook-todos/static/css/main.b100e6da.chunk.css",
+    "main.js": "/custom-hook-todos/static/js/main.565944fe.chunk.js",
+    "main.js.map": "/custom-hook-todos/static/js/main.565944fe.chunk.js.map",
+    "runtime-main.js": "/custom-hook-todos/static/js/runtime-main.4e6f509d.js",
+    "runtime-main.js.map": "/custom-hook-todos/static/js/runtime-main.4e6f509d.js.map",
+    "static/js/2.2d6d10f0.chunk.js": "/custom-hook-todos/static/js/2.2d6d10f0.chunk.js",
+    "static/js/2.2d6d10f0.chunk.js.map": "/custom-hook-todos/static/js/2.2d6d10f0.chunk.js.map",
+    "index.html": "/custom-hook-todos/index.html",
+    "precache-manifest.b29aded7399c35d8e4562717fc66d0bc.js": "/custom-hook-todos/precache-manifest.b29aded7399c35d8e4562717fc66d0bc.js",
+    "service-worker.js": "/custom-hook-todos/service-worker.js",
+    "static/css/main.b100e6da.chunk.css.map": "/custom-hook-todos/static/css/main.b100e6da.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4e6f509d.js",
+    "static/js/2.2d6d10f0.chunk.js",
+    "static/css/main.b100e6da.chunk.css",
+    "static/js/main.565944fe.chunk.js"
+  ]
+}
