@@ -17,6 +17,7 @@ const Todo = (props) => {
           {props.name}
         </label>
         <button onClick={() => context.removeTodo(props.id)} style={{marginLeft: '10px', fontSize: '10px', color: 'red'}}>remove</button>
+        <button onClick={() => context.archiveTodo(props.id)} style={{marginLeft: '10px', fontSize: '10px', color: 'green'}}>archive</button>
       </div>
     );
 }
