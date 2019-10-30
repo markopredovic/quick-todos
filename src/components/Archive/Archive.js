@@ -13,7 +13,7 @@ const Archive = () => {
       <ArchiveItem key={item.key} {...item} />
     ));
   } else {
-    ToastsStore.info("Archive is empty!");
+    ToastsStore.info("Archive is empty! \n(Arhiva je prazna)");
   }
 
   return (
