@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import todosContext from '../../context/todosContext';
+import todosContext from '../../context/todosContext'
 import Todo from '../../components/TodosList/Todo/Todo'
 
 const TodosList = () => {
@@ -9,7 +9,7 @@ const TodosList = () => {
     const todos = context.todos.map(todo => <Todo key={todo.id} {...todo} />)
 
     return(
-        <div>
+        <div className="l-todos">
             {todos}
         </div>
     )

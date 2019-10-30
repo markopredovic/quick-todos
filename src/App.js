@@ -1,28 +1,52 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./styles/styles.scss";
 
-import Title from './components/Title/Title';
-import AddTodoForm from './components/AddTodoForm/AddTodoForm';
-import TodosList from './components/TodosList/TodosList';
-import Archive from './components/Archive/Archive'
+import Header from "./components/Header";
+import AddTodoForm from "./components/AddTodoForm/AddTodoForm";
+import Homepage from "./components/pages/Homepage";
+import ArchivePage from "./components/pages/ArchivePage";
 
-import useLocalStorage from './hooks/useLocalStorage';
-import TodosContext from './context/todosContext';
-
-
+import useLocalStorage from "./hooks/useLocalStorage";
+import TodosContext from "./context/todosContext";
 
 function App() {
   const localStorageKey = "custom-hook-todos";
-  const [state, addTodo, removeTodo, toggleTodo, archiveTodo, backToTodos] = useLocalStorage(localStorageKey);
-  
+  const [
+    state,
+    addTodo,
+    removeTodo,
+    toggleTodo,
+    archiveTodo,
+    backToTodos
+  ] = useLocalStorage(localStorageKey);
+
   return (
-    <TodosContext.Provider value={{todos: state.todos, archive: state.archive, addTodo, toggleTodo, removeTodo, archiveTodo, backToTodos}}>
-      <div className="App">
-        <Title title="Todos" />
-        <AddTodoForm />
-        <TodosList />
-        <Archive />
-      </div>
+    <TodosContext.Provider
+      value={{
+        todos: state.todos,
+        archive: state.archive,
+        addTodo,
+        toggleTodo,
+        removeTodo,
+        archiveTodo,
+        backToTodos
+      }}
+    >
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/" exact>
+            <Homepage />
+          </Route>
+          <Route path="/add-todo" exact>
+            <AddTodoForm />
+          </Route>
+          <Route path="/archive" exact>
+            <ArchivePage />
+          </Route>
+        </Switch>
+      </Router>
     </TodosContext.Provider>
   );
 }

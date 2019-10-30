@@ -1,0 +1,80 @@
+/* -----------------------------
+  layout:
+------------------------------- */
+
+/* header: */
+.l-header {
+  margin-bottom: 40px;
+
+  ul {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    li {
+      display: block;
+      width: 33.3%;
+      border-right: 1px solid #fff;
+
+      &:last-child { margin-right: none;}
+    }
+    a {
+      padding: 10px 0;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      background-color: #000;
+
+      &.is-link-active {
+        color: red;
+      }
+    }
+  }
+}
+
+/* todos: */
+.l-todos {
+  padding: 0 15px;
+
+  .m-todo { margin-bottom: 10px; }
+}
+
+/* add todo: */
+.l-add-todo {
+  padding: 0 15px;
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    input {
+      padding: 0 10px;
+      width: 80%;
+      line-height: 30px;
+      font-size: 1.4rem;
+      border: 1px solid gray;
+      border-radius: 2px;
+    }
+
+  }
+}
+
+/* archive: */
+.l-archive {
+  padding: 0 15px;
+  list-style: none;
+}
+.l-archive-item {
+  display: flex;
+  align-items: center;
+
+  span {
+    margin-right: 10px;
+    font-size: 1.4rem;
+  }
+}

@@ -1,0 +1,26 @@
+/* -----------------------
+  modules:
+-------------------------*/
+
+/* links: */
+.is-link-active { color: red; }
+
+/* buttons: */
+.m-button {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 1.6rem;
+  border: none;
+  background-color: unset;
+
+  &.red { color: red; }
+  &.green { color: green; }
+  &.blue { color: blue;}
+}
+
+/* todo: */
+.m-todo {
+  display: flex;
+  align-items: center;
+}

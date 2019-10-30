@@ -1,17 +1,27 @@
-import React, { useContext } from 'react';
-import todosContext from '../../../context/todosContext'
+import React, { useContext } from "react";
+import { ToastsContainer, ToastsStore } from "react-toasts";
+import { FaUndoAlt } from "react-icons/fa";
+import todosContext from "../../../context/todosContext";
 
-const ArchiveItem = (props) => {
+const ArchiveItem = props => {
+  const context = useContext(todosContext);
 
-    const context = useContext(todosContext);
+  const handleBackFromArchive = () => {
+    context.backToTodos(props.id);
+    ToastsStore.warning("Todo is backed from archive!");
+  };
 
-    return (
-      <li>
-        <div>{props.name}
-        <button onClick={() => context.backToTodos(props.id)}>back to todos</button>
-        </div>
-      </li>
-    );
-}
+  return (
+    <li>
+      <div className="l-archive-item">
+        <span>{props.name}</span>
+        <button className="m-button blue" onClick={handleBackFromArchive}>
+          <FaUndoAlt />
+        </button>
+      </div>
+      <ToastsContainer store={ToastsStore} />
+    </li>
+  );
+};
 
 export default ArchiveItem;
