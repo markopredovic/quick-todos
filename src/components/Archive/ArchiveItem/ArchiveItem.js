@@ -8,7 +8,7 @@ const ArchiveItem = props => {
 
   const handleBackFromArchive = () => {
     context.backToTodos(props.id);
-    ToastsStore.warning("Todo is backed from archive!");
+    ToastsStore.warning("Reverted to main list! \n(Vraceno u listu!)");
   };
 
   return (

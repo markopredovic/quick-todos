@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaClipboardList, FaPlusSquare, FaFileArchive } from "react-icons/fa";
 import { NavLink } from 'react-router-dom'
 
 const Header = () => {
@@ -11,7 +12,7 @@ const Header = () => {
             exact
             activeClassName="is-link-active"
           >
-            Todos
+            <FaClipboardList />
           </NavLink>
         </li>
         <li>
@@ -20,7 +21,7 @@ const Header = () => {
             exact
             activeClassName="is-link-active"
           >
-            Add Todo
+            <FaPlusSquare />
           </NavLink>
         </li>
         <li>
@@ -29,7 +30,7 @@ const Header = () => {
             exact
             activeClassName="is-link-active"
           >
-            Archive
+            <FaFileArchive />
           </NavLink>
         </li>
       </ul>

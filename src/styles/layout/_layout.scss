@@ -26,6 +26,7 @@
       display: block;
       text-align: center;
       text-decoration: none;
+      font-size: 3rem;
       color: #fff;
       background-color: #000;
 
@@ -45,6 +46,7 @@
 
 /* add todo: */
 .l-add-todo {
+  position: relative;
   padding: 0 15px;
 
   form {
@@ -62,12 +64,23 @@
     }
 
   }
+  .m-inline-error {
+    position: absolute;
+    bottom: -50px;
+    font-size: 1rem;
+    color: red;
+  }
 }
 
 /* archive: */
 .l-archive {
   padding: 0 15px;
   list-style: none;
+
+  li {
+    margin-bottom: 10px;
+    line-height: 30px;
+  }
 }
 .l-archive-item {
   display: flex;

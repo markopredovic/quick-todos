@@ -8,12 +8,12 @@ const Todo = props => {
 
   const handleRemoveTodo = () => {
     context.removeTodo(props.id);
-    ToastsStore.error("Todo is deleted!");
+    ToastsStore.error("Item is deleted! \n(Stavka je obrisana)");
   };
 
   const handleArchiveTodo = () => {
     context.archiveTodo(props.id);
-    ToastsStore.info("Todo is archived!");
+    ToastsStore.info("Item is archived! \n(Stavka je arhivirana!)");
   };
 
   return (
