@@ -36,13 +36,13 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route path="/" exact>
+          <Route path="/local-storage-todos" exact>
             <Homepage />
           </Route>
-          <Route path="/add-todo" exact>
+          <Route path="/local-storage-todos/add-todo" exact>
             <AddTodoForm />
           </Route>
-          <Route path="/archive" exact>
+          <Route path="/local-storage-todos/archive" exact>
             <ArchivePage />
           </Route>
         </Switch>
