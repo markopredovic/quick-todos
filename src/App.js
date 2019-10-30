@@ -34,18 +34,20 @@ function App() {
       }}
     >
       <Router>
-        <Header />
-        <Switch>
-          <Route path="/local-storage-todos" exact>
-            <Homepage />
-          </Route>
-          <Route path="/local-storage-todos/add-todo" exact>
-            <AddTodoForm />
-          </Route>
-          <Route path="/local-storage-todos/archive" exact>
-            <ArchivePage />
-          </Route>
-        </Switch>
+        <div className="l-container">
+          <Header />
+          <Switch>
+            <Route path="/local-storage-todos" exact>
+              <Homepage />
+            </Route>
+            <Route path="/local-storage-todos/add-todo" exact>
+              <AddTodoForm />
+            </Route>
+            <Route path="/local-storage-todos/archive" exact>
+              <ArchivePage />
+            </Route>
+          </Switch>
+        </div>
       </Router>
     </TodosContext.Provider>
   );

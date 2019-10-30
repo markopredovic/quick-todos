@@ -1,6 +1,11 @@
 /* -----------------------------
   layout:
 ------------------------------- */
+.l-container {
+  width: 100%;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
 
 /* header: */
 .l-header {
@@ -17,6 +22,7 @@
     li {
       display: block;
       width: 33.3%;
+      border-top: 1px solid #fff;
       border-right: 1px solid #fff;
 
       &:last-child { margin-right: none;}
@@ -41,7 +47,26 @@
 .l-todos {
   padding: 0 15px;
 
-  .m-todo { margin-bottom: 10px; }
+  .m-todo {
+    margin-bottom: 10px;
+
+    label {
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+
+
+      input[type=checkbox] { display: none; }
+      input ~ span.m-checked { display: none;}
+      input:checked ~ span.m-checked { display: initial; }
+      input:checked ~ span.m-unchecked { display: none; }
+
+      .m-checkbox-icon {
+        margin-right: 10px;
+        font-size: 1.6rem;
+      }
+    }
+  }
 }
 
 /* add todo: */
@@ -66,8 +91,8 @@
   }
   .m-inline-error {
     position: absolute;
-    bottom: -50px;
-    font-size: 1rem;
+    bottom: -30px;
+    font-size: 1.2rem;
     color: red;
   }
 }
@@ -89,5 +114,12 @@
   span {
     margin-right: 10px;
     font-size: 1.4rem;
+  }
+}
+
+@media only screen and (min-width: 640px) {
+  .l-container {
+    width: 600px;
+    margin: 0 auto;
   }
 }

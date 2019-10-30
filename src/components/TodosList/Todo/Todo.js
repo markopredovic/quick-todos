@@ -1,6 +1,11 @@
 import React, { useContext } from "react";
 import { ToastsContainer, ToastsStore } from "react-toasts";
-import { FaMinusCircle, FaFileArchive } from "react-icons/fa";
+import {
+  FaMinusCircle,
+  FaFileArchive,
+  FaCheckCircle,
+  FaRegCircle
+} from "react-icons/fa";
 import todosContext from "../../../context/todosContext";
 
 const Todo = props => {
@@ -24,6 +29,13 @@ const Todo = props => {
           checked={props.isComplete}
           onChange={() => context.toggleTodo(props.id)}
         />
+        <span className="m-unchecked m-checkbox-icon">
+          <FaRegCircle />
+        </span>
+        <span className="m-checked m-checkbox-icon">
+          <FaCheckCircle />
+        </span>
+
         {props.name}
       </label>
       <button className="m-button red" onClick={handleRemoveTodo}>
