@@ -11,6 +11,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import TodosContext from "./context/todosContext";
 
 function App() {
+  const base_url = '/quick-todos'
   const localStorageKey = "custom-hook-todos";
   const [
     state,
@@ -37,13 +38,13 @@ function App() {
         <div className="l-container">
           <Header />
           <Switch>
-            <Route path="/local-storage-todos" exact>
+            <Route path={base_url} exact>
               <Homepage />
             </Route>
-            <Route path="/local-storage-todos/add-todo" exact>
+            <Route path={`${base_url}/add-todo`} exact>
               <AddTodoForm />
             </Route>
-            <Route path="/local-storage-todos/archive" exact>
+            <Route path={`${base_url}/archive`} exact>
               <ArchivePage />
             </Route>
           </Switch>

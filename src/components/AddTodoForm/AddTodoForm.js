@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useRef, useState, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa'
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from "react-toasts"
 import { withRouter } from 'react-router-dom'
@@ -9,6 +9,10 @@ const AddTodoForm = (props) => {
     const context = useContext(todosContext);
     const inputRef = useRef('');
     const [error, setError] = useState(null);
+
+    useEffect(() => {
+      inputRef.current.focus();
+    }, [])
 
     const onSubmitHandler = event => {
         event.preventDefault();
