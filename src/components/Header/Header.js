@@ -1,22 +1,20 @@
 import React from 'react';
 import { FaClipboardList, FaPlusSquare, FaFileArchive } from "react-icons/fa";
 import { NavLink } from 'react-router-dom'
+import { BASE_URL } from '../../types'
 
 const Header = () => {
-
-  const base_url = '/quick-todos'
-
   return (
     <nav className="l-header">
       <ul>
         <li>
-          <NavLink to={base_url} exact activeClassName="is-link-active">
+          <NavLink to={BASE_URL} exact activeClassName="is-link-active">
             <FaClipboardList />
           </NavLink>
         </li>
         <li>
           <NavLink
-            to={`${base_url}/add-todo`}
+            to={`${BASE_URL}/add-todo`}
             exact
             activeClassName="is-link-active"
           >
@@ -25,7 +23,7 @@ const Header = () => {
         </li>
         <li>
           <NavLink
-            to={`${base_url}/archive`}
+            to={`${BASE_URL}/archive`}
             exact
             activeClassName="is-link-active"
           >

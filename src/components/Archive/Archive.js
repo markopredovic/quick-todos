@@ -6,7 +6,10 @@ import ArchiveItem from "./ArchiveItem/ArchiveItem";
 const Archive = () => {
   const context = useContext(todosContext);
 
-  let archive = "Archive is empty";
+  let archive = <div>
+    Archive is empty <br/>
+    (Arhiva je prazna)
+  </div>;
 
   if (context.archive.length) {
     archive = context.archive.map(item => (

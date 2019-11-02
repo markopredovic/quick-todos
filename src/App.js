@@ -10,8 +10,9 @@ import ArchivePage from "./components/pages/ArchivePage";
 import useLocalStorage from "./hooks/useLocalStorage";
 import TodosContext from "./context/todosContext";
 
+import { BASE_URL } from './types'
+
 function App() {
-  const base_url = '/quick-todos'
   const localStorageKey = "custom-hook-todos";
   const [
     state,
@@ -38,13 +39,13 @@ function App() {
         <div className="l-container">
           <Header />
           <Switch>
-            <Route path={base_url} exact>
+            <Route path={BASE_URL} exact>
               <Homepage />
             </Route>
-            <Route path={`${base_url}/add-todo`} exact>
+            <Route path={`${BASE_URL}/add-todo`} exact>
               <AddTodoForm />
             </Route>
-            <Route path={`${base_url}/archive`} exact>
+            <Route path={`${BASE_URL}/archive`} exact>
               <ArchivePage />
             </Route>
           </Switch>
