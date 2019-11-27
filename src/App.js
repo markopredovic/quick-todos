@@ -20,7 +20,8 @@ function App() {
     removeTodo,
     toggleTodo,
     archiveTodo,
-    backToTodos
+    backToTodos,
+    setCurrentPage
   ] = useLocalStorage(localStorageKey);
 
   return (
@@ -28,11 +29,13 @@ function App() {
       value={{
         todos: state.todos,
         archive: state.archive,
+        pagination: state.pagination,
         addTodo,
         toggleTodo,
         removeTodo,
         archiveTodo,
-        backToTodos
+        backToTodos,
+        setCurrentPage
       }}
     >
       <Router>

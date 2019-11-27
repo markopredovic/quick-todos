@@ -7,7 +7,8 @@ import {
   REMOVE_TODO,
   ADD_TODO_ARCHIVE,
   LOAD_TODOS_ARCHIVE,
-  BACK_TODO
+  BACK_TODO,
+  SET_CURRENT_PAGE
 } from "../types";
 
 /*
@@ -17,7 +18,11 @@ import {
 const useLocalStorage = key => {
   const initialState = {
     todos: [],
-    archive: []
+    archive: [],
+    pagination: {
+      itemsPerPage: 10,
+      currentPage: 0
+    }
   };
 
   const [state, dispatch] = useReducer(todosReducer, initialState);
@@ -127,7 +132,11 @@ const useLocalStorage = key => {
     dispatch({type: BACK_TODO, payload: id})
   };
 
-  return [state, addTodo, removeTodo, toggleTodo, archiveTodo, backToTodos];
+  const setCurrentPage = index => {
+    dispatch({type: SET_CURRENT_PAGE, payload: index})
+  }
+
+  return [state, addTodo, removeTodo, toggleTodo, archiveTodo, backToTodos, setCurrentPage];
 };
 
 export default useLocalStorage;

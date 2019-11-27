@@ -10,5 +10,6 @@ export const BACK_TODO = "BACK_TODO";
 
 export const BASE_URL = "/quick-todos"
 
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
 

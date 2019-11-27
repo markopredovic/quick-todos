@@ -1,8 +1,12 @@
-import { ADD_TODO, LOAD_TODOS, TOGGLE_TODO, REMOVE_TODO, ADD_TODO_ARCHIVE, LOAD_TODOS_ARCHIVE, BACK_TODO } from "../types";
+import { ADD_TODO, LOAD_TODOS, TOGGLE_TODO, REMOVE_TODO, ADD_TODO_ARCHIVE, LOAD_TODOS_ARCHIVE, BACK_TODO, SET_CURRENT_PAGE } from "../types";
 
 const initialState = {
   todos: [],
-  archive: []
+  archive: [],
+  pagination: {
+    itemsPerPage: 5,
+    currentPage: 0
+  }
 }
 
 export default (state = initialState, action) => {
@@ -30,6 +34,14 @@ export default (state = initialState, action) => {
       };
     case BACK_TODO:
       return backTodo(state, action.payload);
+    case SET_CURRENT_PAGE:
+      return {
+        ...state,
+        pagination: {
+          ...state.pagination,
+          currentPage: action.payload
+        }
+      }
     default:
       return state;
   }
@@ -62,11 +74,21 @@ const removeTodo = (state, id) => {
     }
   });
 
+  console.log("[UPDATED TODOS LENGTH]", updated_todos.length);
+
+  const pagination = state.pagination
+
   console.log("Remove todo: ", updated_todos);
+
+  let updateCurrentPage =
+    updated_todos.length % pagination.itemsPerPage === 0
+      ? pagination.currentPage - 1
+      : pagination.currentPage;
 
   return {
     ...state,
-    todos: updated_todos
+    todos: updated_todos,
+    pagination: {...state.pagination, currentPage: updateCurrentPage}
   };
 };
 
@@ -76,7 +98,7 @@ const addTodoArchive = (state, id) => {
   console.log("archiveTodo", archiveTodo);
 
   const updated_todos = state.todos.filter(item => item.id === id ? null : item);
-  
+
   return {
     ...state,
     todos: updated_todos,
@@ -85,12 +107,12 @@ const addTodoArchive = (state, id) => {
 }
 
 const backTodo = (state, id) => {
-  
+
   const currentTodo = state.archive.filter(todo => todo.id === id)[0];
   const updated_archive = state.archive.filter(item =>
     item.id === id ? null : item
   );
-  
+
   return {
     ...state,
     todos: [...state.todos, currentTodo],
