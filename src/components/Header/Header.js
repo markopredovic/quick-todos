@@ -13,11 +13,21 @@ const Header = () => {
       <div className="l-lang">
         <ul>
           <li>
-            <button onClick={() => context.setLanguage("rs")}>Srpski</button>
+            <button
+              onClick={() => context.setLanguage("rs")}
+              className={context.lang === "rs" ? "m-active-lang" : ""}
+            >
+              Srpski
+            </button>
           </li>
           <li>|</li>
           <li>
-            <button onClick={() => context.setLanguage("en")}>English</button>
+            <button
+              onClick={() => context.setLanguage("en")}
+              className={context.lang === "en" ? "m-active-lang" : ""}
+            >
+              English
+            </button>
           </li>
         </ul>
       </div>

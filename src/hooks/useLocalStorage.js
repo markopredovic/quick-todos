@@ -24,7 +24,7 @@ const useLocalStorage = key => {
       itemsPerPage: 10,
       currentPage: 0
     },
-    lang: 'sr'
+    lang: 'rs'
   };
 
   const [state, dispatch] = useReducer(todosReducer, initialState);

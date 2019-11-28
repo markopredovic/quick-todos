@@ -10,7 +10,7 @@ const ArchiveItem = props => {
     en: {
       revertedToList: "Reverted to main list!"
     },
-    sr: {
+    rs: {
       revertedToList: "Vraceno u listu!"
     }
   });

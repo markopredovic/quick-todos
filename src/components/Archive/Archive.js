@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { ToastsContainer, ToastsStore } from "react-toasts";
 import LocalizedStrings from "react-localization";
 import todosContext from "../../context/todosContext";
@@ -15,16 +15,7 @@ const Archive = () => {
   });
 
   const context = useContext(todosContext);
-
-  useEffect(() => {
-    strings.setLanguage(context.lang);
-    console.log("[LANG SYNC]", strings.emptyArchive);
-  }, [context.lang]);
-
-  const emptyArchiveMessage = () => {
-    strings.setLanguage(context.lang);
-    return strings.emptyArchive;
-  }
+  strings.setLanguage(context.lang)
 
   return (
     <>
@@ -34,7 +25,7 @@ const Archive = () => {
             <ArchiveItem key={index} {...item} />
           ))
         ) : (
-          <div>{emptyArchiveMessage()}</div>
+          <div>{strings.emptyArchive}</div>
         )}
         <ToastsContainer store={ToastsStore} />
       </ul>

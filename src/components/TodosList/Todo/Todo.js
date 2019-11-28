@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { ToastsContainer, ToastsStore } from "react-toasts";
 import LocalizedStrings from "react-localization";
 
@@ -16,7 +16,7 @@ const Todo = props => {
       itemDeleted: "Item is deleted!",
       itemArchived: "Item is archived!"
     },
-    sr: {
+    rs: {
       itemDeleted: "Stavka je obrisana!",
       itemArchived: "Stavka je arhivirana!"
     }
@@ -24,9 +24,7 @@ const Todo = props => {
 
   const context = useContext(todosContext);
 
-  useEffect(() => {
-    strings.setLanguage(context.lang);
-  }, [context.lang]);
+strings.setLanguage(context.lang);
 
   const handleRemoveTodo = () => {
     context.removeTodo(props.id);

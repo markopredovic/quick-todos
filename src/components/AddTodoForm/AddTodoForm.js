@@ -14,7 +14,7 @@ const AddTodoForm = (props) => {
       inputPlaceholderAdd: "enter task",
       emptyField: "empty field!"
     },
-    sr: {
+    rs: {
       addToList: "Dodato u listu!",
       inputPlaceholderAdd: "unesi stavku",
       emptyField: "prazno polje!"
