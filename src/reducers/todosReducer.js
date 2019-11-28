@@ -1,4 +1,4 @@
-import { ADD_TODO, LOAD_TODOS, TOGGLE_TODO, REMOVE_TODO, ADD_TODO_ARCHIVE, LOAD_TODOS_ARCHIVE, BACK_TODO, SET_CURRENT_PAGE } from "../types";
+import { ADD_TODO, LOAD_TODOS, TOGGLE_TODO, REMOVE_TODO, ADD_TODO_ARCHIVE, LOAD_TODOS_ARCHIVE, BACK_TODO, SET_CURRENT_PAGE, SET_LANG } from "../types";
 
 const initialState = {
   todos: [],
@@ -6,7 +6,8 @@ const initialState = {
   pagination: {
     itemsPerPage: 5,
     currentPage: 0
-  }
+  },
+  lang: 'sr'
 }
 
 export default (state = initialState, action) => {
@@ -41,6 +42,11 @@ export default (state = initialState, action) => {
           ...state.pagination,
           currentPage: action.payload
         }
+      }
+    case SET_LANG:
+      return {
+        ...state,
+        lang: action.payload
       }
     default:
       return state;

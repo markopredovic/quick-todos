@@ -1,5 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ToastsContainer, ToastsStore } from "react-toasts";
+import LocalizedStrings from "react-localization";
+
 import {
   FaMinusCircle,
   FaFileArchive,
@@ -9,16 +11,31 @@ import {
 import todosContext from "../../../context/todosContext";
 
 const Todo = props => {
+  let strings = new LocalizedStrings({
+    en: {
+      itemDeleted: "Item is deleted!",
+      itemArchived: "Item is archived!"
+    },
+    sr: {
+      itemDeleted: "Stavka je obrisana!",
+      itemArchived: "Stavka je arhivirana!"
+    }
+  });
+
   const context = useContext(todosContext);
+
+  useEffect(() => {
+    strings.setLanguage(context.lang);
+  }, [context.lang]);
 
   const handleRemoveTodo = () => {
     context.removeTodo(props.id);
-    ToastsStore.error("Item is deleted! \n(Stavka je obrisana)");
+    ToastsStore.error(strings.itemDeleted);
   };
 
   const handleArchiveTodo = () => {
     context.archiveTodo(props.id);
-    ToastsStore.info("Item is archived! \n(Stavka je arhivirana!)");
+    ToastsStore.info(strings.itemArchived);
   };
 
   return (

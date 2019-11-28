@@ -1,14 +1,31 @@
 import React, { useContext, useRef, useState, useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa'
 import { ToastsContainer, ToastsStore, ToastsContainerPosition } from "react-toasts"
+import LocalizedStrings from "react-localization";
 import { withRouter } from 'react-router-dom'
 import todosContext from '../../context/todosContext'
 
+
 const AddTodoForm = (props) => {
+
+  let strings = new LocalizedStrings({
+    en: {
+      addToList: "Added to the list!",
+      inputPlaceholderAdd: "enter task",
+      emptyField: "empty field!"
+    },
+    sr: {
+      addToList: "Dodato u listu!",
+      inputPlaceholderAdd: "unesi stavku",
+      emptyField: "prazno polje!"
+    }
+  });
 
     const context = useContext(todosContext);
     const inputRef = useRef('');
     const [error, setError] = useState(null);
+
+    strings.setLanguage(context.lang)
 
     useEffect(() => {
       inputRef.current.focus();
@@ -32,12 +49,11 @@ const AddTodoForm = (props) => {
         context.addTodo(todo)
         inputRef.current.value = null
         inputRef.current.focus();
-        // props.history.push('/')
-        ToastsStore.success("Added to the list! \n(Dodato u listu!)");
+        ToastsStore.success(strings.addToList);
     }
 
     const validate = () => {
-        let error = inputRef.current.value.length === 0 ? "Text is empty! \n(Tekst je prazan!)" : '';
+        let error = inputRef.current.value.length === 0 ? strings.emptyField : '';
 
         return error;
     }
@@ -49,8 +65,15 @@ const AddTodoForm = (props) => {
     return (
       <div className="l-add-todo">
         <form noValidate onSubmit={onSubmitHandler}>
-          <input type="text" placeholder="add (unesi)" ref={inputRef} style={error && errorCss}/>
-          <span className="m-inline-error" style={{whiteSpace: 'pre-wrap'}}>{error}</span>
+          <input
+            type="text"
+            placeholder={strings.inputPlaceholderAdd}
+            ref={inputRef}
+            style={error && errorCss}
+          />
+          <span className="m-inline-error" style={{ whiteSpace: "pre-wrap" }}>
+            {error}
+          </span>
           <button className="m-button green" type="submit">
             <FaPlus />
           </button>

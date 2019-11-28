@@ -8,7 +8,8 @@ import {
   ADD_TODO_ARCHIVE,
   LOAD_TODOS_ARCHIVE,
   BACK_TODO,
-  SET_CURRENT_PAGE
+  SET_CURRENT_PAGE,
+  SET_LANG
 } from "../types";
 
 /*
@@ -22,7 +23,8 @@ const useLocalStorage = key => {
     pagination: {
       itemsPerPage: 10,
       currentPage: 0
-    }
+    },
+    lang: 'sr'
   };
 
   const [state, dispatch] = useReducer(todosReducer, initialState);
@@ -136,7 +138,9 @@ const useLocalStorage = key => {
     dispatch({type: SET_CURRENT_PAGE, payload: index})
   }
 
-  return [state, addTodo, removeTodo, toggleTodo, archiveTodo, backToTodos, setCurrentPage];
+  const setLanguage = lang => dispatch({type: SET_LANG, payload: lang})
+
+  return [state, addTodo, removeTodo, toggleTodo, archiveTodo, backToTodos, setCurrentPage, setLanguage];
 };
 
 export default useLocalStorage;

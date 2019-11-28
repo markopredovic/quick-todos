@@ -1,28 +1,41 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { ToastsContainer, ToastsStore } from "react-toasts";
+import LocalizedStrings from "react-localization";
 import todosContext from "../../context/todosContext";
 import ArchiveItem from "./ArchiveItem/ArchiveItem";
 
 const Archive = () => {
+  let strings = new LocalizedStrings({
+    en: {
+      emptyArchive: "Archive is empty!"
+    },
+    rs: {
+      emptyArchive: "Arhiva je prazna!"
+    }
+  });
+
   const context = useContext(todosContext);
 
-  let archive = <div>
-    Archive is empty <br/>
-    (Arhiva je prazna)
-  </div>;
+  useEffect(() => {
+    strings.setLanguage(context.lang);
+    console.log("[LANG SYNC]", strings.emptyArchive);
+  }, [context.lang]);
 
-  if (context.archive.length) {
-    archive = context.archive.map(item => (
-      <ArchiveItem key={item.key} {...item} />
-    ));
-  } else {
-    ToastsStore.info("Archive is empty! \n(Arhiva je prazna)");
+  const emptyArchiveMessage = () => {
+    strings.setLanguage(context.lang);
+    return strings.emptyArchive;
   }
 
   return (
     <>
       <ul className="l-archive">
-        {archive}
+        {context.archive.length ? (
+          context.archive.map((item, index) => (
+            <ArchiveItem key={index} {...item} />
+          ))
+        ) : (
+          <div>{emptyArchiveMessage()}</div>
+        )}
         <ToastsContainer store={ToastsStore} />
       </ul>
     </>

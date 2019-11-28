@@ -11,7 +11,19 @@
 .l-header {
   margin-bottom: 40px;
 
-  ul {
+  .l-lang {
+    padding: 0 15px;
+    ul {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    }
+  }
+
+  > ul {
     padding-left: 0;
     margin: 0;
     list-style: none;
@@ -91,7 +103,7 @@
   }
   .m-inline-error {
     position: absolute;
-    bottom: -30px;
+    bottom: -15px;
     font-size: 1.2rem;
     color: red;
   }
