@@ -80,7 +80,7 @@ const AddTodoForm = (props) => {
         </form>
         <ToastsContainer
           store={ToastsStore}
-          position={ToastsContainerPosition.TOP_LEFT}
+          position={ToastsContainerPosition.TOP_RIGHT}
         />
       </div>
     );

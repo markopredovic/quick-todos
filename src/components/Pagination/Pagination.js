@@ -6,10 +6,7 @@ const Pagination = () => {
 
   const context = useContext(TodosContext)
 
-  console.log('[CONTEXT]', context)
-
   const makeButtons = num => {
-    console.log('[MAKE BUTTONS  NUM]', num)
     const buttons = new Array(num).fill('').map((item, index) => <Button key={index} index={index}/>)
 
     return buttons

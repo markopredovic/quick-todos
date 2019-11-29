@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
-import { ToastsContainer, ToastsStore } from "react-toasts";
+import {
+  ToastsContainer,
+  ToastsStore,
+  ToastsContainerPosition
+} from "react-toasts";
 import LocalizedStrings from "react-localization";
 import { FaUndoAlt } from "react-icons/fa";
 import todosContext from "../../../context/todosContext";
 
 const ArchiveItem = props => {
-
   let strings = new LocalizedStrings({
     en: {
       revertedToList: "Reverted to main list!"
@@ -20,8 +23,13 @@ const ArchiveItem = props => {
   strings.setLanguage(context.lang);
 
   const handleBackFromArchive = () => {
-    context.backToTodos(props.id);
     ToastsStore.warning(strings.revertedToList);
+
+    props.length === 1
+      ? setTimeout(() => {
+          context.backToTodos(props.id);
+        }, 800)
+      : context.backToTodos(props.id);
   };
 
   return (
@@ -32,7 +40,10 @@ const ArchiveItem = props => {
           <FaUndoAlt />
         </button>
       </div>
-      <ToastsContainer store={ToastsStore} />
+      <ToastsContainer
+        store={ToastsStore}
+        position={ToastsContainerPosition.TOP_RIGHT}
+      />
     </li>
   );
 };

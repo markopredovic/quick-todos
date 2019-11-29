@@ -1,5 +1,9 @@
 import React, { useContext } from "react";
-import { ToastsContainer, ToastsStore } from "react-toasts";
+import {
+  ToastsContainer,
+  ToastsStore,
+  ToastsContainerPosition
+} from "react-toasts";
 import LocalizedStrings from "react-localization";
 
 import {
@@ -59,7 +63,10 @@ strings.setLanguage(context.lang);
       <button className="m-button green" onClick={handleArchiveTodo}>
         <FaFileArchive />
       </button>
-      <ToastsContainer store={ToastsStore} />
+      <ToastsContainer
+        store={ToastsStore}
+        position={ToastsContainerPosition.TOP_RIGHT}
+      />
     </div>
   );
 };

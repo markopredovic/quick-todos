@@ -11,18 +11,6 @@
 .l-header {
   margin-bottom: 40px;
 
-  .l-lang {
-    padding: 0 15px;
-    ul {
-    padding-left: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    }
-  }
-
   > ul {
     padding-left: 0;
     margin: 0;
@@ -132,6 +120,34 @@
 .l-pagination {
   padding: 15px;
   .btn-pagination { margin-right: 10px; }
+}
+
+.l-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  .l-container { height: auto; }
+
+
+    .l-lang {
+    padding: 15px;
+    background-color: #000;
+    color: #fff;
+
+    ul {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    li { padding: 0 7px;}
+    span { cursor: pointer; }
+    }
+  }
 }
 
 @media only screen and (min-width: 640px) {

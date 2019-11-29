@@ -22,12 +22,15 @@ const Archive = () => {
       <ul className="l-archive">
         {context.archive.length ? (
           context.archive.map((item, index) => (
-            <ArchiveItem key={index} {...item} />
+            <ArchiveItem
+              key={index}
+              {...item}
+              length={context.archive.length}
+            />
           ))
         ) : (
           <div>{strings.emptyArchive}</div>
         )}
-        <ToastsContainer store={ToastsStore} />
       </ul>
     </>
   );

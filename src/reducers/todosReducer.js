@@ -80,11 +80,7 @@ const removeTodo = (state, id) => {
     }
   });
 
-  console.log("[UPDATED TODOS LENGTH]", updated_todos.length);
-
   const pagination = state.pagination
-
-  console.log("Remove todo: ", updated_todos);
 
   let updateCurrentPage =
     updated_todos.length % pagination.itemsPerPage === 0
@@ -101,14 +97,20 @@ const removeTodo = (state, id) => {
 const addTodoArchive = (state, id) => {
   const archiveTodo = state.todos.filter(todo => todo.id === id)[0];
 
-  console.log("archiveTodo", archiveTodo);
-
   const updated_todos = state.todos.filter(item => item.id === id ? null : item);
+
+    const pagination = state.pagination;
+
+    let updateCurrentPage =
+      updated_todos.length % pagination.itemsPerPage === 0
+        ? pagination.currentPage - 1
+        : pagination.currentPage;
 
   return {
     ...state,
     todos: updated_todos,
-    archive: [...state.archive, archiveTodo]
+    archive: [...state.archive, archiveTodo],
+    pagination: { ...state.pagination, currentPage: updateCurrentPage }
   };
 }
 
@@ -118,6 +120,7 @@ const backTodo = (state, id) => {
   const updated_archive = state.archive.filter(item =>
     item.id === id ? null : item
   );
+
 
   return {
     ...state,

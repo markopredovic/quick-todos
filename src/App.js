@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./styles/styles.scss";
 
 import Header from "./components/Header";
+import Footer from './components/Footer'
 import AddTodoForm from "./components/AddTodoForm/AddTodoForm";
 import Homepage from "./components/pages/Homepage";
 import ArchivePage from "./components/pages/ArchivePage";
@@ -55,6 +56,7 @@ function App() {
               <ArchivePage />
             </Route>
           </Switch>
+          <Footer />
         </div>
       </Router>
     </TodosContext.Provider>

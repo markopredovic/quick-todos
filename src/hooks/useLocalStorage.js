@@ -31,7 +31,6 @@ const useLocalStorage = key => {
 
   // load todos from local storage
   useEffect(() => {
-    console.log("use effect 1");
     const todos = JSON.parse(window.localStorage.getItem(key));
 
     if (todos) {
@@ -44,11 +43,7 @@ const useLocalStorage = key => {
 
   // load archive
   useEffect(() => {
-    console.log("use effect 2");
-
     const archive = JSON.parse(window.localStorage.getItem(`${key}-archive`));
-
-    console.log("archive", archive);
 
     if (archive) {
       dispatch({
