@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import {
   ToastsContainer,
   ToastsStore,
@@ -17,18 +17,31 @@ import todosContext from "../../../context/todosContext";
 const Todo = props => {
   let strings = new LocalizedStrings({
     en: {
+      itemCompleted: "Task is completed!",
+      itemReactivated: "Task is reactivated",
       itemDeleted: "Item is deleted!",
       itemArchived: "Item is archived!"
     },
     rs: {
+      itemCompleted: "Stavka je kompletirana!",
+      itemReactivated: "Stavka je ponovo aktivirana",
       itemDeleted: "Stavka je obrisana!",
       itemArchived: "Stavka je arhivirana!"
     }
   });
 
   const context = useContext(todosContext);
+  const inputRef = useRef(null)
 
-strings.setLanguage(context.lang);
+  strings.setLanguage(context.lang);
+
+  const handleToogleTodo = () => {
+    console.log('[INPUT REF]', inputRef.current.checked)
+    context.toggleTodo(props.id);
+    inputRef.current.checked
+      ? ToastsStore.success(strings.itemCompleted)
+      : ToastsStore.success(strings.itemReactivated);
+  };
 
   const handleRemoveTodo = () => {
     context.removeTodo(props.id);
@@ -46,7 +59,8 @@ strings.setLanguage(context.lang);
         <input
           type="checkbox"
           checked={props.isComplete}
-          onChange={() => context.toggleTodo(props.id)}
+          onChange={handleToogleTodo}
+          ref={inputRef}
         />
         <span className="m-unchecked m-checkbox-icon">
           <FaRegCircle />
