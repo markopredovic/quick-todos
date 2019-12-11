@@ -5,16 +5,18 @@ import {
   ToastsContainerPosition
 } from "react-toasts";
 import LocalizedStrings from "react-localization";
-import { FaUndoAlt } from "react-icons/fa";
+import { FaUndoAlt, FaTimes } from "react-icons/fa";
 import todosContext from "../../../context/todosContext";
 
 const ArchiveItem = props => {
   let strings = new LocalizedStrings({
     en: {
-      revertedToList: "Reverted to main list!"
+      revertedToList: "Reverted to main list!",
+      removeArchiveTodo: "Item removed from archive"
     },
     rs: {
-      revertedToList: "Vraceno u listu!"
+      revertedToList: "Vraceno u listu!",
+      removeArchiveTodo: "Stavka je izbrisana iz arhive"
     }
   });
 
@@ -32,10 +34,23 @@ const ArchiveItem = props => {
       : context.backToTodos(props.id);
   };
 
+  const handleRemoveArchiveTodo = () => {
+    ToastsStore.success(strings.removeArchiveTodo);
+
+    props.length === 1
+      ? setTimeout(() => {
+          context.removeArchiveTodo(props.id);
+        }, 800)
+      : context.removeArchiveTodo(props.id);
+  };
+
   return (
     <li>
       <div className="l-archive-item">
         <span>{props.name}</span>
+        <button className="m-button red" onClick={handleRemoveArchiveTodo}>
+          <FaTimes />
+        </button>
         <button className="m-button blue" onClick={handleBackFromArchive}>
           <FaUndoAlt />
         </button>

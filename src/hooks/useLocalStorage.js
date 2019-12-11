@@ -8,6 +8,7 @@ import {
   ADD_TODO_ARCHIVE,
   LOAD_TODOS_ARCHIVE,
   BACK_TODO,
+  REMOVE_ARCHIVE_TODO,
   SET_CURRENT_PAGE,
   SET_LANG
 } from "../types";
@@ -24,7 +25,7 @@ const useLocalStorage = key => {
       itemsPerPage: 10,
       currentPage: 0
     },
-    lang: 'rs'
+    lang: "rs"
   };
 
   const [state, dispatch] = useReducer(todosReducer, initialState);
@@ -113,6 +114,18 @@ const useLocalStorage = key => {
     dispatch({ type: ADD_TODO_ARCHIVE, payload: id });
   };
 
+  const removeArchiveTodo = id => {
+    console.log("[REMOVE ARCHIVED TODO]");
+    const updatedArchive = state.archive.filter(item => item.id !== id);
+
+    window.localStorage.setItem(
+      `${key}-archive`,
+      JSON.stringify(updatedArchive)
+    );
+
+    dispatch({ type: REMOVE_ARCHIVE_TODO, payload: id });
+  };
+
   const backToTodos = id => {
     const currentTodo = state.archive.filter(item => item.id === id)[0];
     currentTodo.isComplete = false;
@@ -126,16 +139,26 @@ const useLocalStorage = key => {
 
     window.localStorage.setItem(`${key}`, JSON.stringify(updatedTodos));
 
-    dispatch({type: BACK_TODO, payload: id})
+    dispatch({ type: BACK_TODO, payload: id });
   };
 
   const setCurrentPage = index => {
-    dispatch({type: SET_CURRENT_PAGE, payload: index})
-  }
+    dispatch({ type: SET_CURRENT_PAGE, payload: index });
+  };
 
-  const setLanguage = lang => dispatch({type: SET_LANG, payload: lang})
+  const setLanguage = lang => dispatch({ type: SET_LANG, payload: lang });
 
-  return [state, addTodo, removeTodo, toggleTodo, archiveTodo, backToTodos, setCurrentPage, setLanguage];
+  return [
+    state,
+    addTodo,
+    removeTodo,
+    toggleTodo,
+    archiveTodo,
+    removeArchiveTodo,
+    backToTodos,
+    setCurrentPage,
+    setLanguage
+  ];
 };
 
 export default useLocalStorage;

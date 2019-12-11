@@ -1,4 +1,15 @@
-import { ADD_TODO, LOAD_TODOS, TOGGLE_TODO, REMOVE_TODO, ADD_TODO_ARCHIVE, LOAD_TODOS_ARCHIVE, BACK_TODO, SET_CURRENT_PAGE, SET_LANG } from "../types";
+import {
+  ADD_TODO,
+  LOAD_TODOS,
+  TOGGLE_TODO,
+  REMOVE_TODO,
+  ADD_TODO_ARCHIVE,
+  LOAD_TODOS_ARCHIVE,
+  BACK_TODO,
+  SET_CURRENT_PAGE,
+  SET_LANG,
+  REMOVE_ARCHIVE_TODO
+} from "../types";
 
 const initialState = {
   todos: [],
@@ -7,8 +18,8 @@ const initialState = {
     itemsPerPage: 5,
     currentPage: 0
   },
-  lang: 'sr'
-}
+  lang: "sr"
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -35,6 +46,8 @@ export default (state = initialState, action) => {
       };
     case BACK_TODO:
       return backTodo(state, action.payload);
+    case REMOVE_ARCHIVE_TODO:
+      return removeArchiveTodo(state, action.payload);
     case SET_CURRENT_PAGE:
       return {
         ...state,
@@ -42,12 +55,12 @@ export default (state = initialState, action) => {
           ...state.pagination,
           currentPage: action.payload
         }
-      }
+      };
     case SET_LANG:
       return {
         ...state,
         lang: action.payload
-      }
+      };
     default:
       return state;
   }
@@ -55,32 +68,32 @@ export default (state = initialState, action) => {
 
 const toggleTodo = (state, id) => {
   let updated_todos = state.todos.map(todo => {
-    if(todo.id === id) {
+    if (todo.id === id) {
       return {
         ...todo,
         isComplete: !todo.isComplete
-      }
-    } else {
-      return todo
-    }
-  })
-
-  return {
-    ...state,
-    todos: updated_todos
-  }
-}
-
-const removeTodo = (state, id) => {
-  let updated_todos = state.todos.filter(todo => {
-    if (todo.id === id) {
-      return null
+      };
     } else {
       return todo;
     }
   });
 
-  const pagination = state.pagination
+  return {
+    ...state,
+    todos: updated_todos
+  };
+};
+
+const removeTodo = (state, id) => {
+  let updated_todos = state.todos.filter(todo => {
+    if (todo.id === id) {
+      return null;
+    } else {
+      return todo;
+    }
+  });
+
+  const pagination = state.pagination;
 
   let updateCurrentPage =
     updated_todos.length % pagination.itemsPerPage === 0
@@ -90,21 +103,23 @@ const removeTodo = (state, id) => {
   return {
     ...state,
     todos: updated_todos,
-    pagination: {...state.pagination, currentPage: updateCurrentPage}
+    pagination: { ...state.pagination, currentPage: updateCurrentPage }
   };
 };
 
 const addTodoArchive = (state, id) => {
   const archiveTodo = state.todos.filter(todo => todo.id === id)[0];
 
-  const updated_todos = state.todos.filter(item => item.id === id ? null : item);
+  const updated_todos = state.todos.filter(item =>
+    item.id === id ? null : item
+  );
 
-    const pagination = state.pagination;
+  const pagination = state.pagination;
 
-    let updateCurrentPage =
-      updated_todos.length % pagination.itemsPerPage === 0
-        ? pagination.currentPage - 1
-        : pagination.currentPage;
+  let updateCurrentPage =
+    updated_todos.length % pagination.itemsPerPage === 0
+      ? pagination.currentPage - 1
+      : pagination.currentPage;
 
   return {
     ...state,
@@ -112,19 +127,28 @@ const addTodoArchive = (state, id) => {
     archive: [...state.archive, archiveTodo],
     pagination: { ...state.pagination, currentPage: updateCurrentPage }
   };
-}
+};
 
 const backTodo = (state, id) => {
-
   const currentTodo = state.archive.filter(todo => todo.id === id)[0];
   const updated_archive = state.archive.filter(item =>
     item.id === id ? null : item
   );
 
-
   return {
     ...state,
     todos: [...state.todos, currentTodo],
     archive: updated_archive
-  }
-}
+  };
+};
+
+const removeArchiveTodo = (state, id) => {
+  const updated_archive = state.archive.filter(item =>
+    item.id === id ? null : item
+  );
+
+  return {
+    ...state,
+    archive: updated_archive
+  };
+};

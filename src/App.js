@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./styles/styles.scss";
 
 import Header from "./components/Header";
-import Footer from './components/Footer'
+import Footer from "./components/Footer";
 import AddTodoForm from "./components/AddTodoForm/AddTodoForm";
 import Homepage from "./components/pages/Homepage";
 import ArchivePage from "./components/pages/ArchivePage";
@@ -11,7 +11,7 @@ import ArchivePage from "./components/pages/ArchivePage";
 import useLocalStorage from "./hooks/useLocalStorage";
 import TodosContext from "./context/todosContext";
 
-import { BASE_URL } from './types'
+import { BASE_URL } from "./types";
 
 function App() {
   const localStorageKey = "custom-hook-todos";
@@ -21,6 +21,7 @@ function App() {
     removeTodo,
     toggleTodo,
     archiveTodo,
+    removeArchiveTodo,
     backToTodos,
     setCurrentPage,
     setLanguage
@@ -37,6 +38,7 @@ function App() {
         toggleTodo,
         removeTodo,
         archiveTodo,
+        removeArchiveTodo,
         backToTodos,
         setCurrentPage,
         setLanguage
